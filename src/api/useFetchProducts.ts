@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { Category, categorySchema } from "../schemas/categorySchema";
 import slugify from "slugify";
 import { generateProductSlug } from "../lib/utils";
@@ -37,4 +38,10 @@ const fetchCategoriesWithProducts = async (): Promise<Category[]> => {
   }
 };
 
-export default fetchCategoriesWithProducts;
+export const useFetchProducts = () => {
+  return useQuery({
+    queryKey: ["categoriesWithProducts"],
+    queryFn: fetchCategoriesWithProducts,
+    staleTime: 1000 * 60 * 30,
+  });
+};
