@@ -1,12 +1,22 @@
-const API_URL = import.meta.env.VITE_API_URL;
 import { Category, categorySchema } from "../schemas/categorySchema";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const fetchCategoriesWithProducts = async (): Promise<Category[]> => {
-  const response = await fetch(API_URL);
+  try {
+    const response = await fetch(API_URL);
 
-  const data = await response.json();
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
 
-  return categorySchema.array().parse(data);
+    const data = await response.json();
+
+    return categorySchema.array().parse(data);
+  } catch (error) {
+    console.error("Failed to fetch categories:", error);
+    throw error;
+  }
 };
 
 export default fetchCategoriesWithProducts;
