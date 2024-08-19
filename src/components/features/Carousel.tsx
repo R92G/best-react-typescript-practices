@@ -6,12 +6,6 @@ import Swiper from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-/* Carousel Component
- *
- * A carousel component that displays images in a slider.
- * It also includes thumbnails for navigation.
- */
-
 export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
   const swiperRef = useRef<Swiper | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,7 +44,7 @@ export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
             key={index}
             src={image}
             alt={`Thumbnail ${index + 1}`}
-            isActive={activeIndex === index}
+            $isActive={activeIndex === index}
             onClick={() => handleThumbnailClick(index)}
           />
         ))}
@@ -93,13 +87,13 @@ const ThumbnailsContainer = styled.div`
   }
 `;
 
-const Thumbnail = styled.img<{ isActive: boolean }>`
+const Thumbnail = styled.img<{ $isActive: boolean }>`
   width: 60px;
   height: 60px;
   object-fit: cover;
   border-radius: 8px;
-  border: ${({ isActive }) =>
-    isActive ? "2px solid #007bff" : "2px solid transparent"};
+  border: ${({ $isActive }) =>
+    $isActive ? "2px solid #007bff" : "2px solid transparent"};
   cursor: pointer;
   transition: border 0.3s ease;
 
