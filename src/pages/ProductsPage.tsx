@@ -5,7 +5,9 @@ import { useProductsByCategory } from "../hooks/useProductsByCategory";
 import { Grid } from "../components/layout/Grid";
 import { CenteredTitle } from "../components/layout/CenteredTitle";
 import { Container } from "../components/layout/Container";
+import styled from "styled-components";
 import { StatusMessage } from "../components/common/StatusMessage";
+import { BackLink } from "../components/common/BackLink";
 
 const ProductsPage: React.FC = () => {
   const { products, isLoading, error } = useProductsByCategory();
@@ -21,6 +23,9 @@ const ProductsPage: React.FC = () => {
   return (
     <Container>
       <CenteredTitle level={1}>Products</CenteredTitle>
+      <HeaderWrapper>
+        <BackLink to="/categories" label="Categories" />
+      </HeaderWrapper>
 
       <Grid>
         {products.map((product) => (
@@ -32,3 +37,10 @@ const ProductsPage: React.FC = () => {
 };
 
 export default ProductsPage;
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+`;

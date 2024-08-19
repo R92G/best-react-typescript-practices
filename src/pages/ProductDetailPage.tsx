@@ -14,6 +14,7 @@ import { getProductButtonText } from "../lib/utils";
 import { EnergyLabel } from "../components/product/EnergyLabel";
 import { HeartButton } from "../components/features/HeartButton";
 import useCartStore from "../stores/useCartStore";
+import { BackLink } from "../components/common/BackLink";
 
 const ProductDetailPage: React.FC = () => {
   const { product, isLoading, isError } = useProductBySlug();
@@ -37,6 +38,10 @@ const ProductDetailPage: React.FC = () => {
       {" "}
       <Banner promotions={product.storePromotions} />
       <Container paddingTop="10rem">
+        <BackLink
+          to={`/categories/${product.categorySlug}`}
+          label={product.categoryName}
+        />
         <ContentWrapper>
           <HeartButton product={product} />
           <CarouselContainer>
