@@ -4,10 +4,12 @@ import CategoryPage from "./pages/CategoryPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductsPage from "./pages/ProductsPage";
 import "../src/styles/globals.scss";
+import { Navbar } from "./components/layout/Navbar";
 
 const App: React.FC = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<CategoryPage />} />
         <Route path="/categories" element={<CategoryPage />} />
