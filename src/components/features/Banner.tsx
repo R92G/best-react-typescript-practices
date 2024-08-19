@@ -26,7 +26,7 @@ export const Banner: React.FC<BannerProps> = ({
       $fullWidth={$fullWidth}
     >
       {/* Safely parse and render the HTML string */}
-      <p>{parse(promotions[0].promotionText)}</p>
+      {parse(promotions[0].promotionText)}
     </BannerContainer>
   );
 };
