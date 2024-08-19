@@ -11,7 +11,7 @@ interface CardProps {
   minWidth?: string;
   padding?: string;
   paddingTop?: string;
-  paddingbottom?: string;
+  paddingBottom?: string;
   gap?: string;
 }
 
@@ -24,7 +24,7 @@ export const Card: React.FC<CardProps> = ({
   minHeight,
   minWidth,
   paddingTop,
-  paddingbottom,
+  paddingBottom,
   padding,
   gap,
 }) => {
@@ -36,7 +36,7 @@ export const Card: React.FC<CardProps> = ({
       $minHeight={minHeight}
       $minWidth={minWidth}
       $paddingTop={paddingTop}
-      $paddingbottom={paddingbottom}
+      $paddingBottom={paddingBottom}
       $padding={padding}
       $gap={gap}
     >
@@ -50,7 +50,7 @@ const CardContainer = styled.div<{
   $minHeight?: string;
   $minWidth?: string;
   $paddingTop?: string;
-  $paddingbottom?: string;
+  $paddingBottom?: string;
   $padding?: string;
   $gap?: string;
 }>`
@@ -71,5 +71,5 @@ const CardContainer = styled.div<{
   padding: ${(props) => props.$padding || "0px"};
   padding-top: ${(props) => props.$paddingTop || "3rem"};
   gap: ${(props) => props.$gap || "5rem"};
-  padding-bottom: ${(props) => props.$paddingbottom || "1rem"};
+  padding-bottom: ${(props) => props.$paddingBottom || "1rem"};
 `;
