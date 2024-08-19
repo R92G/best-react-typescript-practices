@@ -1,5 +1,9 @@
 //css reset
 
+:root {
+  --swiper-navigation-size: 16px !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,16 +18,17 @@ body {
 .swiper-button-prev,
 .swiper-button-next {
   background-color: #f4f4f4;
-  font-size: 12px;
-  width: 24px;
-  height: 24px;
+  font-size: 12px !important;
   border-radius: 50%;
+  width: 24px !important;
+  height: 24px !important;
 }
 
 .swiper-button-prev:after,
 .swiper-button-next:after {
   background-color: #f4f4f4;
-  font-size: 12px;
-
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
