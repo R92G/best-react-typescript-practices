@@ -9,3 +9,9 @@ export const generateProductSlug = (product: Product) => {
 
   return slug;
 };
+
+export const getProductButtonText = (product: Product, isInCart: boolean) => {
+  if (isInCart) return "In cart";
+  if (product.stockStatusText !== "inStock") return "Not available";
+  return "Buy now";
+};
