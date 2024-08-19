@@ -13,9 +13,10 @@ interface FiltersStore {
   products: Product[];
   filteredProducts: Product[];
   filters: Filters;
+  setProducts: (products: Product[]) => void;
 }
 
-export const useFiltersStore = create<FiltersStore>(() => ({
+export const useFiltersStore = create<FiltersStore>((set) => ({
   products: [],
   filteredProducts: [],
   filters: {
@@ -24,5 +25,11 @@ export const useFiltersStore = create<FiltersStore>(() => ({
     maxPrice: null,
     inStock: null,
     energyLabel: null,
+  },
+  setProducts: (products: Product[]) => {
+    set(() => ({
+      products,
+      filteredProducts: products, // Initially, no filters applied
+    }));
   },
 }));
