@@ -4,6 +4,11 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import useFavoritesStore from "../../stores/useFavoritesStore";
 import { Product } from "../../schemas/productSchema";
 
+/*
+    HeartButton component is a button that allows users to favorite a product.
+    It uses the useFavoritesStore hook to manage the state of the favorites list. 
+*/
+
 interface HeartButtonProps {
   product: Product;
 }
