@@ -11,6 +11,7 @@ import { ColorOptions } from "../components/product/Color";
 import { PillButton } from "../components/common/PillButton";
 import { OutOfStockBanner } from "../components/product/OutOfStockBanner";
 import { getProductButtonText } from "../lib/utils";
+import { EnergyLabel } from "../components/product/EnergyLabel";
 
 const ProductDetailPage: React.FC = () => {
   const { product, isLoading, isError } = useProductBySlug();
@@ -44,6 +45,7 @@ const ProductDetailPage: React.FC = () => {
             </ProductPrice>
             <USPsContainer usps={product.usp} />
             <ColorOptions fmyChipList={product.fmyChipList} />
+            <EnergyLabel energyLabelGrade={product.energyLabelGrade} />
             <PillButton
               variant="primary"
               onClick={() => {}}
