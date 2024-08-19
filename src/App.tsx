@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CategoryPage from "./pages/CategoryPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductsPage from "./pages/ProductsPage";
-import "../src/styles/globals.scss";
 import { Navbar } from "./components/layout/Navbar";
 import { SearchModal } from "./components/modals/SearchModal";
 import { Toaster } from "react-hot-toast";
 import { FavoritesModal } from "./components/modals/FavoritesModal";
+import { CartModal } from "./components/modals/CartModal";
+import "../src/styles/globals.scss";
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
       <Toaster />
       <SearchModal />
       <FavoritesModal />
+      <CartModal />
     </Router>
   );
 };
