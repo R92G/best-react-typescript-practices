@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { FaTimes } from "react-icons/fa";
 
+/**
+ * Reusable Modal Component
+ *
+ * The header and footer will stick to the top and bottom of the modal.
+ */
+
 interface ModalProps {
   title: string;
   isOpen: boolean;
@@ -19,6 +25,7 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  //   This use effects makes sure it only animates when the modal is opened
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
@@ -45,7 +52,6 @@ export const Modal: React.FC<ModalProps> = ({
   );
 };
 
-// Animatie voor de modal wanneer deze opent
 const intro = keyframes`
   0% {
     transform: scale(0.8);
@@ -57,7 +63,6 @@ const intro = keyframes`
   }
 `;
 
-// Stijlen voor de modal
 const Overlay = styled.div`
   position: fixed;
   top: 0;
