@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ProductCard } from "../components/product/ProductCard";
 import { useProductsByCategory } from "../hooks/useProductsByCategory";
 import { Grid } from "../components/layout/Grid";
@@ -17,14 +17,6 @@ const ProductsPage: React.FC = () => {
   const filterModal = useFiltersModal();
 
   const filteredProducts = useFiltersStore((state) => state.filteredProducts);
-  const setProducts = useFiltersStore((state) => state.setProducts);
-
-  // Set products into the store when they are loaded
-  useEffect(() => {
-    if (products) {
-      setProducts(products);
-    }
-  }, [products, setProducts]);
 
   if (error) {
     return <StatusMessage type="error" message="Something went wrong." />;
@@ -34,7 +26,7 @@ const ProductsPage: React.FC = () => {
     return <StatusMessage message="No products found." />;
   }
 
-  if (!isLoading && filteredProducts.length === 0) {
+  if (!isLoading && filteredProducts.length === 0 && products.length > 0) {
     return <StatusMessage resetFilters message="No products found." />;
   }
 
