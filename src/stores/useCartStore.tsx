@@ -10,6 +10,9 @@ interface CartItem extends Product {
 interface CartStore {
   cartItems: CartItem[];
   addToCart: (product: Product) => void;
+  removeFromCart: (modelCode: string) => void;
+  increaseQuantity: (modelCode: string) => void;
+  decreaseQuantity: (modelCode: string) => void;
 }
 
 const useCartStore = create<CartStore>()(
@@ -36,6 +39,46 @@ const useCartStore = create<CartStore>()(
             cartItems: [...state.cartItems, { ...product, quantity: 1 }],
           }));
           toast.success(`${product.displayName} added to cart`);
+        }
+      },
+      removeFromCart: (modelCode: string) => {
+        const itemToRemove = get().cartItems.find(
+          (item) => item.modelCode === modelCode
+        );
+        if (itemToRemove) {
+          set((state) => ({
+            cartItems: state.cartItems.filter(
+              (item) => item.modelCode !== modelCode
+            ),
+          }));
+        }
+      },
+      increaseQuantity: (modelCode: string) => {
+        set((state) => ({
+          cartItems: state.cartItems.map((item) =>
+            item.modelCode === modelCode
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        }));
+      },
+
+      decreaseQuantity: (modelCode: string) => {
+        const itemToDecrease = get().cartItems.find(
+          (item) => item.modelCode === modelCode
+        );
+
+        if (itemToDecrease && itemToDecrease.quantity > 1) {
+          set((state) => ({
+            cartItems: state.cartItems.map((item) =>
+              item.modelCode === modelCode
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+            ),
+          }));
+        } else {
+          // Verwijder het item als de hoeveelheid 1 is
+          get().removeFromCart(modelCode);
         }
       },
     }),
