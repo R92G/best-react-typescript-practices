@@ -1,9 +1,10 @@
 import { Logo } from "./Logo";
-
 import { FaHeart, FaShoppingCart, FaSearch } from "react-icons/fa";
+import useSearchModal from "../../stores/useSearchModal";
 import styled from "styled-components";
 
 export const Navbar = () => {
+  const searchModal = useSearchModal();
   return (
     <Header>
       <Logo />
@@ -16,7 +17,7 @@ export const Navbar = () => {
       {/* Icons */}
 
       <IconContainer>
-        <IconWrapper onClick={() => {}}>
+        <IconWrapper onClick={searchModal.openSearch}>
           <FaSearch />
         </IconWrapper>
         {/* Favorites Icon */}
