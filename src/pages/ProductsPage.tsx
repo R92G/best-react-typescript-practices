@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { ProductCard } from "../components/product/ProductCard";
-import { SkeletonGrid } from "../components/skeleton/SkeletonGrid";
 import { useProductsByCategory } from "../hooks/useProductsByCategory";
 import { Grid } from "../components/layout/Grid";
 import { CenteredTitle } from "../components/layout/CenteredTitle";
@@ -26,10 +25,6 @@ const ProductsPage: React.FC = () => {
       setProducts(products);
     }
   }, [products, setProducts]);
-
-  if (isLoading && filteredProducts.length === 0) {
-    return <SkeletonGrid />;
-  }
 
   if (error) {
     return <StatusMessage type="error" message="Something went wrong." />;
