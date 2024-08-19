@@ -8,7 +8,7 @@ import { USPsContainer } from "./UspContainer";
 import { Card } from "../common/Card";
 import { Hr } from "../common/Hr";
 import { StarRating } from "./StarRating";
-
+import { HeartButton } from "../features/HeartButton";
 import { useNavigate } from "react-router-dom";
 import { getProductButtonText } from "../../lib/utils";
 import styled from "styled-components";
@@ -31,6 +31,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       padding="2rem"
       paddingBottom="2rem"
     >
+      <HeartButton product={product} />
       {/* Flex container to align title, image, and price */}
       <ContentWrapper>
         <ProductTitle>{product.displayName}</ProductTitle>
