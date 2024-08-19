@@ -7,6 +7,7 @@ import "../src/styles/globals.scss";
 import { Navbar } from "./components/layout/Navbar";
 import { SearchModal } from "./components/modals/SearchModal";
 import { Toaster } from "react-hot-toast";
+import { FavoritesModal } from "./components/modals/FavoritesModal";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
       </Routes>
       <Toaster />
       <SearchModal />
+      <FavoritesModal />
     </Router>
   );
 };
