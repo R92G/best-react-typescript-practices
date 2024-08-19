@@ -2,8 +2,8 @@ import React, { useState, useRef, useLayoutEffect, useMemo } from "react";
 import { useDebounce } from "use-debounce";
 import { useFetchProducts } from "../../api/useFetchProducts";
 import useSearchModal from "../../stores/useSearchModal";
-import styled from "styled-components";
 import { Modal } from "./Modal";
+import styled from "styled-components";
 
 export const SearchModal: React.FC = () => {
   const { isOpen, closeSearch } = useSearchModal();
@@ -44,11 +44,11 @@ export const SearchModal: React.FC = () => {
       {isLoading && <p>Loading...</p>}
       {error && <p>Something went wrong...</p>}
       {filteredProducts.length > 0 ? (
-        <ul>
+        <ScrollableContainer>
           {filteredProducts.map((product) => (
             <li key={product.modelCode}>{product.displayName}</li>
           ))}
-        </ul>
+        </ScrollableContainer>
       ) : (
         <p>No products found.</p>
       )}
@@ -58,6 +58,7 @@ export const SearchModal: React.FC = () => {
 
 export default SearchModal;
 
+// Styled components
 const SearchInput = styled.input`
   width: 100%;
   padding: 0.75rem;
@@ -65,4 +66,10 @@ const SearchInput = styled.input`
   font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
+`;
+
+const ScrollableContainer = styled.ul`
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 1rem;
 `;
