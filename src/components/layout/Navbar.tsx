@@ -2,11 +2,15 @@ import { Logo } from "./Logo";
 import { FaHeart, FaShoppingCart, FaSearch } from "react-icons/fa";
 import useSearchModal from "../../stores/useSearchModal";
 import useFavoritesModal from "../../stores/useFavoritesModal";
+import useFavoritesStore from "../../stores/useFavoritesStore";
 import styled from "styled-components";
 
 export const Navbar = () => {
   const searchModal = useSearchModal();
   const favoritesModal = useFavoritesModal();
+  const favoriteCount = useFavoritesStore(
+    (state) => state.favoriteProducts.length
+  );
   return (
     <Header>
       <Logo />
@@ -25,6 +29,7 @@ export const Navbar = () => {
         {/* Favorites Icon */}
         <IconWrapper onClick={favoritesModal.openFavorites}>
           <FaHeart />
+          {favoriteCount > 0 && <Badge>{favoriteCount}</Badge>}
         </IconWrapper>
 
         {/* Cart Icon */}
@@ -89,4 +94,19 @@ const IconWrapper = styled.div`
   &:hover {
     color: #1a1a1a;
   }
+`;
+
+const Badge = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #e53e3e;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
