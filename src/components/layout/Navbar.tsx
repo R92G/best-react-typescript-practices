@@ -6,9 +6,11 @@ import useFavoritesStore from "../../stores/useFavoritesStore";
 import styled from "styled-components";
 import { WidthContainer } from "./WidthContainer";
 import useCartStore from "../../stores/useCartStore";
+import useCartModal from "../../stores/useCartModal";
 
 export const Navbar = () => {
   const searchModal = useSearchModal();
+  const cartModal = useCartModal();
   const favoritesModal = useFavoritesModal();
   const favoriteCount = useFavoritesStore(
     (state) => state.favoriteProducts.length
@@ -33,7 +35,7 @@ export const Navbar = () => {
             {favoriteCount > 0 && <Badge>{favoriteCount}</Badge>}
           </IconWrapper>
           {/* Cart Icon */}
-          <IconWrapper onClick={() => {}}>
+          <IconWrapper onClick={cartModal.openCart}>
             <FaShoppingCart />
             {cartCount > 0 && <Badge>{cartCount}</Badge>}
           </IconWrapper>
