@@ -6,6 +6,9 @@ interface PillButtonProps {
   disabled?: boolean;
   maxWidth?: string;
   marginTop?: string;
+  position?: string;
+  bottom?: string;
+  opacity?: string;
 }
 
 export const PillButton = styled(motion.button)<PillButtonProps>`
@@ -42,4 +45,7 @@ export const PillButton = styled(motion.button)<PillButtonProps>`
   /* Handle additional styling from props */
   max-width: ${(props) => props.maxWidth || "auto"};
   margin-top: ${(props) => props.marginTop || "0"};
+  position: ${(props) => props.position || "static"};
+  bottom: ${(props) => props.bottom || "auto"};
+  opacity: ${(props) => props.opacity || "1"};
 `;
