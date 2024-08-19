@@ -12,16 +12,24 @@ import { HeartButton } from "../features/HeartButton";
 import { useNavigate } from "react-router-dom";
 import { getProductButtonText } from "../../lib/utils";
 import styled from "styled-components";
+import useCartStore from "../../stores/useCartStore";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+  const isInCart = useCartStore((state) => state.isInCart(product.modelCode));
   const navigate = useNavigate();
 
   const handleNavigate = (productSlug: string | undefined) => {
     navigate(`/products/${productSlug}`);
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    addToCart(product);
   };
 
   return (
@@ -55,9 +63,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <ButtonContainer>
         <PillButton
           variant="primary"
-          disabled={product.stockStatusText !== "inStock"}
+          disabled={isInCart || product.stockStatusText !== "inStock"}
+          onClick={handleAddToCart}
         >
-          {getProductButtonText(product, false)}
+          {getProductButtonText(product, isInCart)}
         </PillButton>
         <PillButton variant="secondary">View product</PillButton>
       </ButtonContainer>
