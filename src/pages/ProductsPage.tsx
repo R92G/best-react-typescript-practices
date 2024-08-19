@@ -11,6 +11,7 @@ import { BackLink } from "../components/common/BackLink";
 import { FilterButton } from "../components/common/FilterButton";
 import { useFiltersStore } from "../stores/useFiltersStore";
 import useFiltersModal from "../stores/useFiltersModal";
+import { FiltersModal } from "../components/modals/FiltersModal";
 
 const ProductsPage: React.FC = () => {
   const { products, isLoading, error } = useProductsByCategory();
@@ -30,24 +31,34 @@ const ProductsPage: React.FC = () => {
     return <SkeletonGrid />;
   }
 
-  if (error || filteredProducts.length === 0) {
-    return <StatusMessage type="normal" message="No products were found." />;
+  if (error) {
+    return <StatusMessage type="error" message="Something went wrong." />;
+  }
+
+  if (!isLoading && filteredProducts.length === 0) {
+    return <StatusMessage resetFilters message="No products found." />;
   }
 
   return (
-    <Container>
-      <CenteredTitle level={1}>Products</CenteredTitle>
-      <HeaderWrapper>
-        <BackLink to="/categories" label="Categories" />
-        <FilterButton onClick={filterModal.openFilters} />
-      </HeaderWrapper>
+    <>
+      <Container>
+        <CenteredTitle level={1}>Products</CenteredTitle>
+        <HeaderWrapper>
+          <BackLink to="/categories" label="Categories" />
+          <FilterButton onClick={filterModal.openFilters} />
+        </HeaderWrapper>
 
-      <Grid>
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.modelCode} product={product} />
-        ))}
-      </Grid>
-    </Container>
+        <Grid>
+          {filteredProducts.map((product) => (
+            <ProductCard key={product.modelCode} product={product} />
+          ))}
+        </Grid>
+      </Container>
+      <FiltersModal
+        isOpen={filterModal.isOpen}
+        onClose={filterModal.closeFilters}
+      />
+    </>
   );
 };
 
