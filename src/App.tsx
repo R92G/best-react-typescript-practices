@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import { FavoritesModal } from "./components/modals/FavoritesModal";
 import { CartModal } from "./components/modals/CartModal";
 import "../src/styles/globals.scss";
+import ScrollToTop from "./components/features/ScrollToTop";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
       <SearchModal />
       <FavoritesModal />
       <CartModal />
+      <ScrollToTop />
     </Router>
   );
 };
