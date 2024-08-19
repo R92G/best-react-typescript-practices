@@ -19,4 +19,8 @@ const StyledGrid = styled.div<{ $paddingtop?: string }>`
   gap: 20px;
   padding: 20px 0px;
   padding-top: ${(props) => props.$paddingtop || "20px"};
+
+  @media (min-width: 1024px) {
+    gap: 30px;
+  }
 `;
