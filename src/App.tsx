@@ -6,6 +6,7 @@ import ProductsPage from "./pages/ProductsPage";
 import "../src/styles/globals.scss";
 import { Navbar } from "./components/layout/Navbar";
 import { SearchModal } from "./components/modals/SearchModal";
+import { Toaster } from "react-hot-toast";
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/categories/:categorySlug" element={<ProductsPage />} />
         <Route path="/products/:productSlug" element={<ProductDetailPage />} />
       </Routes>
+      <Toaster />
       <SearchModal />
     </Router>
   );
