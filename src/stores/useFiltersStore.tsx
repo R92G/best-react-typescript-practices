@@ -16,6 +16,7 @@ interface FiltersStore {
   setProducts: (products: Product[]) => void;
   setFilter: <K extends keyof Filters>(filterKey: K, value: Filters[K]) => void;
   applyFilters: (filters: Filters) => void;
+  clearFilters: () => void;
 }
 
 export const useFiltersStore = create<FiltersStore>((set) => ({
@@ -85,5 +86,17 @@ export const useFiltersStore = create<FiltersStore>((set) => ({
         filteredProducts: updatedProducts,
       };
     });
+  },
+  clearFilters: () => {
+    set((state) => ({
+      filters: {
+        minRating: null,
+        minPrice: null,
+        maxPrice: null,
+        inStock: null,
+        energyLabel: null,
+      },
+      filteredProducts: state.products, // Reset to original product list
+    }));
   },
 }));
