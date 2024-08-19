@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import parse from "html-react-parser";
 
 interface BannerProps {
-  backgroundColor?: string;
-  textColor?: string;
-  fullWidth?: boolean;
+  $backgroundColor?: string;
+  $textColor?: string;
+  $fullWidth?: boolean;
   promotions?: { promotionText: string }[] | null; // Expect an array of promotions
 }
 
 export const Banner: React.FC<BannerProps> = ({
-  backgroundColor = "#007bff",
-  textColor = "#ffffff",
-  fullWidth = true,
+  $backgroundColor = "#007bff",
+  $textColor = "#ffffff",
+  $fullWidth = true,
   promotions,
 }) => {
   if (!promotions || promotions.length === 0) {
@@ -20,38 +21,34 @@ export const Banner: React.FC<BannerProps> = ({
 
   return (
     <BannerContainer
-      backgroundColor={backgroundColor}
-      textColor={textColor}
-      fullWidth={fullWidth}
+      $backgroundColor={$backgroundColor}
+      $textColor={$textColor}
+      $fullWidth={$fullWidth}
     >
-      <p
-        dangerouslySetInnerHTML={{
-          __html: promotions[0].promotionText, // show the first promotion
-        }}
-      />
+      {/* Safely parse and render the HTML string */}
+      <p>{parse(promotions[0].promotionText)}</p>
     </BannerContainer>
   );
 };
 
 const BannerContainer = styled.div<{
-  backgroundColor: string;
-  textColor: string;
-  fullWidth: boolean;
+  $backgroundColor: string;
+  $textColor: string;
+  $fullWidth: boolean;
 }>`
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor || theme.colors.primary};
-  color: ${({ textColor }) => textColor};
+  background-color: ${({ $backgroundColor, theme }) =>
+    $backgroundColor || theme.colors.primary};
+  color: ${({ $textColor }) => $textColor};
   text-align: center;
   padding: 1rem;
-  
+
   margin-bottom: 2rem;
-  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
+  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
   box-sizing: border-box;
   position: absolute;
-    top: 65px;
-    left: 0;
-    right: 0;
-}
+  top: 65px;
+  left: 0;
+  right: 0;
 
   p {
     margin: 0;
