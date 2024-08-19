@@ -44,9 +44,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <ContentWrapper>
         <ProductTitle>{product.displayName}</ProductTitle>
         <ImageComponent
-          maxWidth="150px"
-          marginBottom="1rem"
-          height="auto"
+          $maxWidth="150px"
+          $marginBottom="1rem"
+          $height="auto"
           src={product.thumbUrl}
           alt={product.displayName}
         />
