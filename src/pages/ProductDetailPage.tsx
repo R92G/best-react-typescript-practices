@@ -6,6 +6,11 @@ import { Container } from "../components/layout/Container";
 import { Banner } from "../components/features/Banner";
 import styled from "styled-components";
 import { Carousel } from "../components/features/Carousel";
+import { USPsContainer } from "../components/product/UspContainer";
+import { ColorOptions } from "../components/product/Color";
+import { PillButton } from "../components/common/PillButton";
+import { OutOfStockBanner } from "../components/product/OutOfStockBanner";
+import { getProductButtonText } from "../lib/utils";
 
 const ProductDetailPage: React.FC = () => {
   const { product, isLoading, isError } = useProductBySlug();
@@ -37,6 +42,16 @@ const ProductDetailPage: React.FC = () => {
             <ProductPrice>
               {product.priceDisplay ? `€${product.priceDisplay}` : null}
             </ProductPrice>
+            <USPsContainer usps={product.usp} />
+            <ColorOptions fmyChipList={product.fmyChipList} />
+            <PillButton
+              variant="primary"
+              onClick={() => {}}
+              disabled={product.stockStatusText !== "inStock"}
+            >
+              {getProductButtonText(product, false)}
+            </PillButton>
+            <OutOfStockBanner stockStatusText={product.stockStatusText} />;
           </InfoContainer>
         </ContentWrapper>
         ;
