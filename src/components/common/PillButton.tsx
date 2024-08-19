@@ -25,21 +25,12 @@ export const PillButton = styled(motion.button)<PillButtonProps>`
   border: ${(props) =>
     props.variant === "secondary" ? "2px solid black" : "none"};
 
-  ${(props) =>
-    props.disabled &&
-    `
-      cursor: not-allowed;
-      opacity: 0.6;
-  `}
-
-  &:hover {
-    ${(props) =>
-      !props.disabled &&
-      `
-      background-color: ${
-        props.variant === "secondary" ? "rgba(0, 0, 0, 0.1)" : "#555"
-      };
-    `}
+  &:hover,
+  &:disabled {
+    background-color: ${(props) =>
+      props.variant === "secondary" ? "rgba(0, 0, 0, 0.1)" : "#555"};
+    cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+    opacity: ${(props) => (props.disabled ? "0.6" : "1")};
   }
 
   /* Handle additional styling from props */
