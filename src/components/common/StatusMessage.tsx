@@ -1,5 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { PillButton } from "./PillButton";
+import { useFiltersStore } from "../../stores/useFiltersStore";
 
 interface StatusMessageProps {
   message: string;
@@ -10,10 +12,22 @@ interface StatusMessageProps {
 export const StatusMessage: React.FC<StatusMessageProps> = ({
   message,
   type = "normal",
+  resetFilters,
 }) => {
+  const clearFilters = useFiltersStore((state) => state.clearFilters);
   return (
     <StatusMessageContainer type={type}>
       <Message>{message}</Message>
+      {resetFilters && (
+        <PillButton
+          variant="secondary"
+          marginTop="1rem"
+          maxWidth="200px"
+          onClick={clearFilters}
+        >
+          Clear Filters
+        </PillButton>
+      )}
     </StatusMessageContainer>
   );
 };
