@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { IoClose } from "react-icons/io5";
+import placeholderImage from "../../assets/placeholder.jpg";
 
 interface ProductListItemProps {
   thumbUrl?: string;
@@ -42,7 +43,7 @@ export const ProductListItem: React.FC<ProductListItemProps> = ({
     <ProductListContainer onClick={onNavigate}>
       <ImageWrapper>
         <ProductImage
-          src={thumbUrl || "../assets/BG-7.jpg"} // Fallback image
+          src={thumbUrl || placeholderImage} // Fallback image
           alt={name}
         />
       </ImageWrapper>
@@ -118,14 +119,23 @@ const QuantityWrapper = styled.div`
 `;
 
 const QuantityButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #007aff;
   color: white;
   border: none;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  line-height: 1; // Ensures the text does not affect centering
+  box-sizing: border-box; // Ensures padding and borders do not affect dimensions
+
   &:hover {
     background-color: #005bb5;
   }
