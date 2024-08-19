@@ -12,6 +12,7 @@ import { PillButton } from "../components/common/PillButton";
 import { OutOfStockBanner } from "../components/product/OutOfStockBanner";
 import { getProductButtonText } from "../lib/utils";
 import { EnergyLabel } from "../components/product/EnergyLabel";
+import { HeartButton } from "../components/features/HeartButton";
 
 const ProductDetailPage: React.FC = () => {
   const { product, isLoading, isError } = useProductBySlug();
@@ -34,6 +35,7 @@ const ProductDetailPage: React.FC = () => {
       <Banner promotions={product.storePromotions} />
       <Container paddingTop="10rem">
         <ContentWrapper>
+          <HeartButton product={product} />
           <CarouselContainer>
             <Carousel images={product.galleryImage || []} />
           </CarouselContainer>
