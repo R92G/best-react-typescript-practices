@@ -14,10 +14,19 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const { filters, setFilter, applyFilters } = useFiltersStore();
+  // Destructuring directly will cause a re-render on every state change
+  const filters = useFiltersStore((state) => state.filters);
+  const setFilter = useFiltersStore((state) => state.setFilter);
+  const applyFilters = useFiltersStore((state) => state.applyFilters);
+  const clearFilters = useFiltersStore((state) => state.clearFilters);
 
   const handleApplyFilters = () => {
     applyFilters(filters); // Apply the current filters
+    onClose();
+  };
+
+  const handleClearFilters = () => {
+    clearFilters(); // Clear all filters
     onClose();
   };
 
@@ -27,7 +36,7 @@ export const FiltersModal: React.FC<FiltersModalProps> = ({
       <PillButton
         marginTop="1rem"
         variant="secondary"
-        onClick={handleApplyFilters}
+        onClick={handleClearFilters}
       >
         Reset filters
       </PillButton>
