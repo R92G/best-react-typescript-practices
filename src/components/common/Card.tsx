@@ -11,7 +11,7 @@ interface CardProps {
   minWidth?: string;
   padding?: string;
   paddingTop?: string;
-  paddingBottom?: string;
+  paddingbottom?: string;
   gap?: string;
 }
 
@@ -24,7 +24,7 @@ export const Card: React.FC<CardProps> = ({
   minHeight,
   minWidth,
   paddingTop,
-  paddingBottom,
+  paddingbottom,
   padding,
   gap,
 }) => {
@@ -33,12 +33,12 @@ export const Card: React.FC<CardProps> = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
-      minHeight={minHeight}
-      minWidth={minWidth}
-      paddingTop={paddingTop}
-      paddingBottom={paddingBottom}
-      padding={padding}
-      gap={gap}
+      $minHeight={minHeight}
+      $minWidth={minWidth}
+      $paddingTop={paddingTop}
+      $paddingbottom={paddingbottom}
+      $padding={padding}
+      $gap={gap}
     >
       {children}
     </CardContainer>
@@ -46,7 +46,14 @@ export const Card: React.FC<CardProps> = ({
 };
 
 // Styled component that accepts individual style props
-const CardContainer = styled.div<CardProps>`
+const CardContainer = styled.div<{
+  $minHeight?: string;
+  $minWidth?: string;
+  $paddingTop?: string;
+  $paddingbottom?: string;
+  $padding?: string;
+  $gap?: string;
+}>`
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -58,11 +65,11 @@ const CardContainer = styled.div<CardProps>`
   align-items: center;
   flex-direction: column;
 
-  min-height: ${(props) => props.minHeight || "317px"};
-  min-width: ${(props) => props.minWidth || "300px"};
+  min-height: ${(props) => props.$minHeight || "317px"};
+  min-width: ${(props) => props.$minWidth || "300px"};
   background: ${(props) => props.theme.colors.background};
-  padding: ${(props) => props.padding || "0px"};
-  padding-top: ${(props) => props.paddingTop || "3rem"};
-  gap: ${(props) => props.gap || "5rem"};
-  padding-bottom: ${(props) => props.paddingBottom || "1rem"};
+  padding: ${(props) => props.$padding || "0px"};
+  padding-top: ${(props) => props.$paddingTop || "3rem"};
+  gap: ${(props) => props.$gap || "5rem"};
+  padding-bottom: ${(props) => props.$paddingbottom || "1rem"};
 `;
