@@ -4,7 +4,7 @@ import { Container } from "../layout/Container";
 
 export const SkeletonDetail: React.FC = () => {
   return (
-    <Container paddingTop="120px">
+    <Container $paddingTop="120px">
       <SkeletonDetailContainer>
         {/* Skeleton Banner - representing the carousel */}
         <SkeletonBanner />

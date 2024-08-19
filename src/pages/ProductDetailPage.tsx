@@ -34,7 +34,7 @@ const ProductDetailPage: React.FC = () => {
   return (
     <>
       <Banner promotions={product.storePromotions} />
-      <Container paddingTop="10rem">
+      <Container $paddingTop="10rem">
         <BackLink
           to={`/categories/${product.categorySlug}`}
           label={product.categoryName}

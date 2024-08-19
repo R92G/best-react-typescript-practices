@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface ContainerProps {
-  paddingTop?: string;
+  $paddingTop?: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -12,7 +12,7 @@ export const Container = styled.div<ContainerProps>`
   padding-right: 1rem;
 
   /* Dynamisch padding-top op basis van prop */
-  padding-top: ${(props) => props.paddingTop || "4rem"};
+  padding-top: ${(props) => props.$paddingTop || "4rem"};
 
   padding-bottom: 1rem;
 
