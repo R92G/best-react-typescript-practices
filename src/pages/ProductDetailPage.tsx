@@ -95,10 +95,13 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  max-width: 450px;
+  max-width: 100%;
   background-color: ${({ theme }) => theme.colors.background};
   padding: 20px;
   border-radius: 12px;
+
+  @media (min-width: 768px) {
+    max-width: 450px;
 `;
 
 const ProductTitle = styled.h1`
