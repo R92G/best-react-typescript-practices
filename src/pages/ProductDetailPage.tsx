@@ -13,9 +13,12 @@ import { OutOfStockBanner } from "../components/product/OutOfStockBanner";
 import { getProductButtonText } from "../lib/utils";
 import { EnergyLabel } from "../components/product/EnergyLabel";
 import { HeartButton } from "../components/features/HeartButton";
+import useCartStore from "../stores/useCartStore";
 
 const ProductDetailPage: React.FC = () => {
   const { product, isLoading, isError } = useProductBySlug();
+  const addToCart = useCartStore((state) => state.addToCart);
+  const isInCart = useCartStore((state) => state.isInCart(product?.modelCode));
 
   if (isLoading && !product) {
     return (
@@ -50,10 +53,10 @@ const ProductDetailPage: React.FC = () => {
             <EnergyLabel energyLabelGrade={product.energyLabelGrade} />
             <PillButton
               variant="primary"
-              onClick={() => {}}
-              disabled={product.stockStatusText !== "inStock"}
+              onClick={() => addToCart(product)}
+              disabled={product.stockStatusText !== "inStock" || isInCart}
             >
-              {getProductButtonText(product, false)}
+              {getProductButtonText(product, isInCart)}
             </PillButton>
             <OutOfStockBanner stockStatusText={product.stockStatusText} />;
           </InfoContainer>
