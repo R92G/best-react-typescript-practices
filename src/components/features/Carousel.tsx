@@ -6,6 +6,12 @@ import Swiper from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
+/* Carousel Component
+ *
+ * A carousel component that displays images in a slider.
+ * It also includes thumbnails for navigation.
+ */
+
 export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
   const swiperRef = useRef<Swiper | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
