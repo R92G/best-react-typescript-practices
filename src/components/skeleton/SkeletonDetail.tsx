@@ -1,21 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { Container } from "../layout/Container";
 
 export const SkeletonDetail: React.FC = () => {
   return (
-    <SkeletonDetailContainer>
-      {/* Skeleton Banner - representing the carousel */}
-      <SkeletonBanner />
+    <Container paddingTop="120px">
+      <SkeletonDetailContainer>
+        {/* Skeleton Banner - representing the carousel */}
+        <SkeletonBanner />
 
-      {/* Skeleton Text Container - representing the product details */}
-      <SkeletonTextContainer>
-        <SkeletonTitle />
-        <SkeletonParagraph />
-        <SkeletonParagraph />
-        <SkeletonParagraph />
-        <SkeletonButton />
-      </SkeletonTextContainer>
-    </SkeletonDetailContainer>
+        {/* Skeleton Text Container - representing the product details */}
+        <SkeletonTextContainer>
+          <SkeletonTitle />
+          <SkeletonParagraph />
+          <SkeletonParagraph />
+          <SkeletonParagraph />
+          <SkeletonButton />
+        </SkeletonTextContainer>
+      </SkeletonDetailContainer>
+    </Container>
   );
 };
 
