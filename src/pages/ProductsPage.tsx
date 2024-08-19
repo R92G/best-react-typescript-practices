@@ -30,7 +30,7 @@ const ProductsPage: React.FC = () => {
     return <StatusMessage type="error" message="Something went wrong." />;
   }
 
-  if (!isLoading && filteredProducts.length === 0) {
+  if (!isLoading && products.length === 0) {
     return <StatusMessage resetFilters message="No products found." />;
   }
 
