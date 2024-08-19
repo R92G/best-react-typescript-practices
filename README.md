@@ -42,7 +42,7 @@ I employed **Styled Components** to create reusable, SCSS-like styled components
 
 ### **Skeleton Loading**
 
-Skeleton loaders were implemented to improve the user experience while data is being fetched. This was achieved by using React Query's loading state instead of React's Suspense.
+Skeleton loaders were implemented to improve the user experience while data is being fetched. This was achieved by using React Suspense in the lazy loading of the page route.
 
 ### **No Prop Drilling**
 
