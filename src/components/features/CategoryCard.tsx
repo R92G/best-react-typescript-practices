@@ -23,8 +23,8 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
       <ImageComponent
         src={category.thumbUrl}
         alt={category.categorySubTypeName}
-        hovered={hovered}
-        width="50%"
+        $hovered={hovered}
+        $width="50%"
       />
       <PillButton
         variant="primary"
