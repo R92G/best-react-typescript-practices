@@ -31,6 +31,10 @@ const ProductsPage: React.FC = () => {
   }
 
   if (!isLoading && products.length === 0) {
+    return <StatusMessage message="No products found." />;
+  }
+
+  if (!isLoading && filteredProducts.length === 0) {
     return <StatusMessage resetFilters message="No products found." />;
   }
 
