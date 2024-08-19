@@ -1,5 +1,4 @@
 import React from "react";
-import { SkeletonDetail } from "../components/skeleton/SkeletonDetail";
 import { StatusMessage } from "../components/common/StatusMessage";
 import { useProductBySlug } from "../hooks/useProductBySlug";
 import { Container } from "../components/layout/Container";
@@ -21,17 +20,16 @@ const ProductDetailPage: React.FC = () => {
   const addToCart = useCartStore((state) => state.addToCart);
   const isInCart = useCartStore((state) => state.isInCart(product?.modelCode));
 
-  if (isLoading && !product) {
-    return (
-      <Container>
-        <SkeletonDetail />
-      </Container>
-    );
+  if (isError) {
+    return <StatusMessage type="error" message="Something went wrong." />;
   }
 
-  if (isError || !product) {
-    return <StatusMessage message="Product niet gevonden." />;
+  if (!isLoading && !product) {
+    return <StatusMessage type="normal" message="Product not found." />;
   }
+
+  // Ensure that `product` exists before rendering its dependent elements
+  if (!product) return null;
 
   return (
     <>
