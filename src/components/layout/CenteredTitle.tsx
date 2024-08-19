@@ -22,4 +22,8 @@ const StyledTitle = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;
   text-align: center; /* Center the text horizontally */
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
