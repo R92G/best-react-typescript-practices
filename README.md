@@ -1,50 +1,69 @@
-# React + TypeScript + Vite
+# Samsung Technical Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my submission for the Technical Assignment. Below is a brief overview of the architecture and key features implemented as part of the solution.
 
-Currently, two official plugins are available:
+## Application Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application is structured across three layers:
 
-## Expanding the ESLint configuration
+1. **Category Page**: Displays an overview of product categories.
+2. **Products Page**: Shows a grid of products within a selected category.
+3. **Product Detail Page**: Provides detailed information about a specific product, including pricing, availability, and more.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This separation of concerns ensures a clean and scalable architecture, making it easier to manage and extend the application.
 
-- Configure the top-level `parserOptions` property like this:
+## Implementation Details
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### **React Application with TypeScript**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+The entire application is built with **TypeScript**, providing strong type safety and improving code reliability. **Zod** was used for schema validation and type inference, ensuring that the API responses are correctly validated and typed throughout the application.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### **State Management**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+State management is handled on two fronts:
+
+- **Zustand**: Used for client-side state, managing features such as:
+  - **Favorites**: Users can mark products as favorites, and these preferences are stored persistently.
+  - **Filters**: Dynamic filters allow users to refine product results based on criteria like price, rating, and stock availability.
+  - **Cart Functionality**: Users can add products to their cart, adjust quantities, and view the total price. The cart state is also persisted across sessions.
+- **React Query**: Manages server-side state, including data fetching, caching, and error handling. The React Query setup includes reusable hooks for API interactions and handles various states such as loading, success, and error.
+
+### **Lazy Loading**
+
+To optimize performance, **lazy loading** was implemented for components, ensuring that code is split and only loaded when necessary, particularly for larger sections like the product detail page.
+
+### **Modular Folder Structure**
+
+The application follows a **modular folder structure**, where related components, hooks, and logic are grouped together by feature. This structure enhances maintainability and scalability, ensuring that future changes or additions can be made easily.
+
+### **CSS and Styling**
+
+I employed **Styled Components** to create reusable, SCSS-like styled components for the UI. This approach ensures that the components are modular and the styles are maintainable. The design is fully responsive and works across various devices and screen sizes.
+
+### **Skeleton Loading**
+
+Skeleton loaders were implemented to improve the user experience while data is being fetched. This was achieved by using React Query's loading state instead of React's Suspense.
+
+### **No Prop Drilling**
+
+The app avoids **prop drilling** by leveraging state management tools like Zustand and React Query. This ensures that data flows are clean and centralized, making the components easier to manage and reducing unnecessary prop passing.
+
+### **Additional Features**
+
+- **Favorites**: Built functionality to allow users to add and remove products from their favorites list.
+- **Filters**: Implemented filters with `useMemo` for efficient filtering based on URL parameters and state, allowing for seamless navigation and refinement of product lists.
+- **Cart**: Added cart functionality with options to add, remove, and adjust quantities of products, including displaying a persistent total price.
+- **Dynamic URL Routing**: Implemented dynamic URL routing to support navigation between the category page, products page, and product detail page.
+- **Browser Compatibility**: Ensured compatibility across major browsers, including Chrome, Edge, Safari, Firefox, and Opera.
+
+## What's Next
+
+Here are some planned improvements for the next iteration:
+
+1. **Dynamic Filters**: Currently, the filters are hardcoded. The next step is to make these filters dynamic, allowing users to apply filters based on the data retrieved from the API.
+2. **Group Products by Color**: Enhance the user experience by grouping products by color, providing users with a more organized and intuitive product display.
+3. **Build a Checkout Screen**: Add a checkout screen where users can review their selected items, input payment details, and complete their purchases.
+
+---
+
+Thank you for reviewing my submission! Feedback will be appreciated!
