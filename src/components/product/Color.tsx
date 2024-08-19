@@ -8,16 +8,16 @@ interface ColorOption {
 }
 
 interface ColorOptionsProps {
-  fmyChipList?: ColorOption[] | null; // Verwerk directe input van de lijst
+  fmyChipList?: ColorOption[] | null;
 }
 
-const ColorOptions: React.FC<ColorOptionsProps> = ({ fmyChipList }) => {
-  // Filter de fmyChipList om alleen items met type "COLOR" te tonen
+export const ColorOptions: React.FC<ColorOptionsProps> = ({ fmyChipList }) => {
+  // filter the color chips to display only the colors
   const colorChips = fmyChipList?.filter(
     (chip) => chip.fmyChipType === "COLOR"
   );
 
-  // Als er geen kleuren zijn of de lijst is leeg, render niets
+  // if there are no color chips, return null
   if (!colorChips || colorChips.length === 0) {
     return null;
   }
@@ -34,9 +34,6 @@ const ColorOptions: React.FC<ColorOptionsProps> = ({ fmyChipList }) => {
   );
 };
 
-export default ColorOptions;
-
-// Styled Components for ColorOptions
 const OptionsContainer = styled.div`
   display: flex;
   align-items: center;
