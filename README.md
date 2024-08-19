@@ -56,6 +56,10 @@ The app avoids **prop drilling** by leveraging state management tools like Zusta
 - **Dynamic URL Routing**: Implemented dynamic URL routing to support navigation between the category page, products page, and product detail page.
 - **Browser Compatibility**: Ensured compatibility across major browsers, including Chrome, Edge, Safari, Firefox, and Opera.
 
+### **Testing the Cart Functionality**
+
+I implemented tests for the cart functionality using Vitest and React Testing Library. These tests verify that the addToCart functionality within the Zustand state management correctly updates the cart by adding products, ensuring that the cart state behaves as expected and the application logic works as intended.
+
 ## What's Next
 
 Here are some planned improvements for the next iteration:
@@ -63,6 +67,7 @@ Here are some planned improvements for the next iteration:
 1. **Dynamic Filters**: Currently, the filters are hardcoded. The next step is to make these filters dynamic, allowing users to apply filters based on the data retrieved from the API.
 2. **Group Products by Color**: Enhance the user experience by grouping products by color, providing users with a more organized and intuitive product display.
 3. **Build a Checkout Screen**: Add a checkout screen where users can review their selected items, input payment details, and complete their purchases.
+4. **Add more tests**: Add tests to verify the favorites, seach and filter functions work as intended.
 
 ---
 
