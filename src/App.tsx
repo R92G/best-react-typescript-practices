@@ -5,7 +5,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductsPage from "./pages/ProductsPage";
 import "../src/styles/globals.scss";
 import { Navbar } from "./components/layout/Navbar";
-import SearchModal from "./components/modals/SearchModal";
+import { SearchModal } from "./components/modals/SearchModal";
 
 const App: React.FC = () => {
   return (

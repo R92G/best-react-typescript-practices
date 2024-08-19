@@ -1,29 +1,51 @@
-import React, { useState, useRef, useLayoutEffect, useMemo } from "react";
-import { useDebounce } from "use-debounce";
-import { useFetchProducts } from "../../api/useFetchProducts";
-import useSearchModal from "../../stores/useSearchModal";
-import { Modal } from "./Modal";
+import React, { useState, useMemo, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
+import { useDebounce } from "use-debounce";
+import useSearchModal from "../../stores/useSearchModal";
+import { useFetchProducts } from "../../api/useFetchProducts";
+import { Product } from "../../schemas/productSchema";
+import { Modal } from "./Modal";
+import { ProductListItem } from "../features/ProductListItem";
+import { useNavigate } from "react-router-dom";
 
 export const SearchModal: React.FC = () => {
   const { isOpen, closeSearch } = useSearchModal();
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery] = useDebounce(searchQuery, 300);
   const { data: categoriesWithProducts, isLoading, error } = useFetchProducts();
+  const navigate = useNavigate();
+
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Focus input when modal is opened, timeout is needed to wait for the input to render.
   useLayoutEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
+    setTimeout(() => {
+      if (isOpen && inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 0);
+  }, [isOpen, inputRef]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleNavigate = (productSlug: string) => {
+    closeSearch();
+    navigate(`/products/${productSlug}`);
+  };
+
+  const handleCloseSearch = () => {
+    setSearchQuery("");
+    closeSearch();
+  };
 
   const filteredProducts = useMemo(() => {
     if (!categoriesWithProducts || !debouncedSearchQuery) return [];
 
     return categoriesWithProducts
       .flatMap((category) => category.modelList)
-      .filter((product) =>
+      .filter((product: Product) =>
         product.displayName
           .toLowerCase()
           .includes(debouncedSearchQuery.toLowerCase())
@@ -33,20 +55,26 @@ export const SearchModal: React.FC = () => {
   if (!isOpen) return null;
 
   return (
-    <Modal title="Search Products" isOpen={isOpen} onClose={closeSearch}>
+    <Modal title="Search Products" isOpen={isOpen} onClose={handleCloseSearch}>
       <SearchInput
-        ref={inputRef}
         type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        ref={inputRef}
         placeholder="Search for products..."
+        value={searchQuery}
+        onChange={handleSearch}
       />
       {isLoading && <p>Loading...</p>}
       {error && <p>Something went wrong...</p>}
       {filteredProducts.length > 0 ? (
         <ScrollableContainer>
           {filteredProducts.map((product) => (
-            <li key={product.modelCode}>{product.displayName}</li>
+            <ProductListItem
+              key={product.modelCode}
+              thumbUrl={product.thumbUrl}
+              name={product.displayName}
+              price={product.priceDisplay ?? "N/A"}
+              onNavigate={() => handleNavigate(product.slug || "")} // Navigate on click
+            />
           ))}
         </ScrollableContainer>
       ) : (
@@ -55,8 +83,6 @@ export const SearchModal: React.FC = () => {
     </Modal>
   );
 };
-
-export default SearchModal;
 
 // Styled components
 const SearchInput = styled.input`
@@ -68,7 +94,7 @@ const SearchInput = styled.input`
   border: 1px solid #ccc;
 `;
 
-const ScrollableContainer = styled.ul`
+const ScrollableContainer = styled.div`
   max-height: 300px;
   overflow-y: auto;
   margin-top: 1rem;
