@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { Product } from "../schemas/productSchema";
+import { toast } from "react-hot-toast";
 
 interface Filters {
   minRating: string | null;
@@ -98,5 +99,6 @@ export const useFiltersStore = create<FiltersStore>((set) => ({
       },
       filteredProducts: state.products, // Reset to original product list
     }));
+    toast.success("Filters cleared");
   },
 }));
