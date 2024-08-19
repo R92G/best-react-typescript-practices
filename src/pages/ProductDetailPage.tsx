@@ -35,7 +35,6 @@ const ProductDetailPage: React.FC = () => {
 
   return (
     <>
-      {" "}
       <Banner promotions={product.storePromotions} />
       <Container paddingTop="10rem">
         <BackLink
@@ -63,10 +62,9 @@ const ProductDetailPage: React.FC = () => {
             >
               {getProductButtonText(product, isInCart)}
             </PillButton>
-            <OutOfStockBanner stockStatusText={product.stockStatusText} />;
+            <OutOfStockBanner stockStatusText={product.stockStatusText} />
           </InfoContainer>
         </ContentWrapper>
-        ;
       </Container>
     </>
   );
