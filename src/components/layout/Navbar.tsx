@@ -4,6 +4,7 @@ import useSearchModal from "../../stores/useSearchModal";
 import useFavoritesModal from "../../stores/useFavoritesModal";
 import useFavoritesStore from "../../stores/useFavoritesStore";
 import styled from "styled-components";
+import { WidthContainer } from "./WidthContainer";
 
 export const Navbar = () => {
   const searchModal = useSearchModal();
@@ -13,30 +14,28 @@ export const Navbar = () => {
   );
   return (
     <Header>
-      <Logo />
-
-      {/* Navigation */}
-      <Nav>
-        <NavLink href="/categories">Categories</NavLink>
-      </Nav>
-
-      {/* Icons */}
-
-      <IconContainer>
-        <IconWrapper onClick={searchModal.openSearch}>
-          <FaSearch />
-        </IconWrapper>
-        {/* Favorites Icon */}
-        <IconWrapper onClick={favoritesModal.openFavorites}>
-          <FaHeart />
-          {favoriteCount > 0 && <Badge>{favoriteCount}</Badge>}
-        </IconWrapper>
-
-        {/* Cart Icon */}
-        <IconWrapper onClick={() => {}}>
-          <FaShoppingCart />
-        </IconWrapper>
-      </IconContainer>
+      <WidthContainer>
+        <Logo />
+        {/* Navigation */}
+        <Nav>
+          <NavLink href="/categories">Categories</NavLink>
+        </Nav>
+        {/* Icons */}
+        <IconContainer>
+          <IconWrapper onClick={searchModal.openSearch}>
+            <FaSearch />
+          </IconWrapper>
+          {/* Favorites Icon */}
+          <IconWrapper onClick={favoritesModal.openFavorites}>
+            <FaHeart />
+            {favoriteCount > 0 && <Badge>{favoriteCount}</Badge>}
+          </IconWrapper>
+          {/* Cart Icon */}
+          <IconWrapper onClick={() => {}}>
+            <FaShoppingCart />
+          </IconWrapper>
+        </IconContainer>
+      </WidthContainer>
     </Header>
   );
 };
@@ -109,4 +108,11 @@ const Badge = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const NavbarContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `;
