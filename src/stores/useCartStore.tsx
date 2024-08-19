@@ -13,6 +13,8 @@ interface CartStore {
   removeFromCart: (modelCode: string) => void;
   increaseQuantity: (modelCode: string) => void;
   decreaseQuantity: (modelCode: string) => void;
+  clearCart: () => void;
+  isInCart: (modelCode: string | undefined) => boolean;
 }
 
 const useCartStore = create<CartStore>()(
@@ -62,7 +64,6 @@ const useCartStore = create<CartStore>()(
           ),
         }));
       },
-
       decreaseQuantity: (modelCode: string) => {
         const itemToDecrease = get().cartItems.find(
           (item) => item.modelCode === modelCode
@@ -80,6 +81,13 @@ const useCartStore = create<CartStore>()(
           // Verwijder het item als de hoeveelheid 1 is
           get().removeFromCart(modelCode);
         }
+      },
+      clearCart: () => {
+        set({ cartItems: [] });
+        toast.success("Cart cleared");
+      },
+      isInCart: (modelCode: string | undefined) => {
+        return get().cartItems.some((item) => item.modelCode === modelCode);
       },
     }),
 
