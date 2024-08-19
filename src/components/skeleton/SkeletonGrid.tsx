@@ -1,7 +1,7 @@
 import React from "react";
 import { SkeletonCard } from "./SkeletonCard";
-import { Grid } from "../Grid";
-import { Container } from "../Container";
+import { Grid } from "../layout/Grid";
+import { Container } from "../layout/Container";
 
 export const SkeletonGrid: React.FC = () => {
   return (
