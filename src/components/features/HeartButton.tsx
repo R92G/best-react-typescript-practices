@@ -4,17 +4,13 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import useFavoritesStore from "../../stores/useFavoritesStore";
 import { Product } from "../../schemas/productSchema";
 
-/*
-    HeartButton component is a button that allows users to favorite a product.
-    It uses the useFavoritesStore hook to manage the state of the favorites list. 
-*/
-
 interface HeartButtonProps {
   product: Product;
 }
 
-const FilledHeart = styled(AiFillHeart)<{ favorited: boolean }>`
-  fill: ${(props) => (props.favorited ? "red" : "rgba(128, 128, 128, 0.7)")};
+// Use a transient prop by adding $ to the favorited prop to prevent it from being passed to the DOM
+const FilledHeart = styled(AiFillHeart)<{ $favorited: boolean }>`
+  fill: ${(props) => (props.$favorited ? "red" : "rgba(128, 128, 128, 0.7)")};
 `;
 
 export const HeartButton: React.FC<HeartButtonProps> = ({ product }) => {
@@ -33,7 +29,8 @@ export const HeartButton: React.FC<HeartButtonProps> = ({ product }) => {
       }}
     >
       <OutlineHeart size={28} />
-      <FilledHeart size={24} favorited={hasFavorited} />
+      {/* Pass $favorited instead of favorited */}
+      <FilledHeart size={24} $favorited={hasFavorited} />
     </HeartContainer>
   );
 };
