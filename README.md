@@ -1,6 +1,4 @@
-# Samsung Technical Assignment
-
-Welcome to my submission for the Technical Assignment. Below is a brief overview of the architecture and key features implemented as part of the solution.
+# React & TypeScript best practices
 
 ## Application Structure
 

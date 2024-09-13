@@ -67,7 +67,6 @@ const StatusMessageContainer = styled.div<{
     `}
 `;
 
-// Error message styled as per Samsung branding
 const Message = styled.p`
   font-size: 1.5rem;
   font-weight: bold;
