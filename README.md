@@ -68,3 +68,5 @@ Here are some planned improvements for the next iteration:
 4. **Add more tests**: Add tests to verify the favorites, seach and filter functions work as intended.
 
 ---
+
+feel free to clone and use
